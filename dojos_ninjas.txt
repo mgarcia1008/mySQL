@@ -1,0 +1,73 @@
+Query: Create 3 new dojos
+INSERT INTO dojos (name)
+VALUES ('Boston'), ('Atlanta'), ('Seattle')
+;
+
+
+Query: Delete the 3 dojos you just created
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM dojos;
+
+Query: Create 3 more dojos
+INSERT INTO dojos (name)
+VALUES ('Boston'), ('Atlanta'), ('Seattle')
+;
+
+
+Query: Create 3 ninjas that belong to the first dojo
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES(7,'Wednesday','Adams',17)
+;
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES(7,'Fester','Adams',62)
+;
+
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES(7,'Morticia','Adams',40)
+;
+
+
+Query: Create 3 ninjas that belong to the second dojo
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES(8,'Dylan','McDermott',40)
+;
+
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES(8,'Donna','Soprano',20)
+;
+
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES(8,'Kelly','Clarkson',23)
+;
+
+
+Query: Create 3 ninjas that belong to the third dojo
+
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES(9,'John','Black',60)
+;
+
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES(9,'Marlena','Evans',60)
+;
+
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES(9,'Brady','Black',32)
+;
+
+Query: Retrieve all the ninjas from the first dojo
+SELECT * FROM dojos
+JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE dojos.id = 7
+; 
+
+Query: Retrieve all the ninjas from the last dojo
+SELECT * FROM dojos
+JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE dojos.id = 9
+; 
+
+Query: Retrieve the last ninja's dojo
+SELECT * FROM dojos
+WHERE dojos.id = (SELECT dojo_id FROM ninjas ORDER BY dojo_id DESC LIMIT 1)
+;
